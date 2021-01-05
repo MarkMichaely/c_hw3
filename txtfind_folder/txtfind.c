@@ -20,17 +20,16 @@
  *
  */
 int getLine(char s[]){
-  int count = 0;
-    char ch = getchar();
-    s[0]=ch;
-    while(ch!='\n' && ch!= EOF){
-        count++;
-        ch = getchar();
-        s[count] = ch;
-    }
-    s[count] = '\0';
-    if(ch == EOF) return EOF;
-    else return count;
+  int i=0;
+  char c;
+  do {
+    c=getchar();
+    *(s+i)=c;
+    i++;
+  }while (c!= '\n' && c!='\0' && i<LINE-1 && c!=EOF);
+  *(s+i) ='\0';
+
+  return i-1;
 }
 /*
  * Function:  getWord
@@ -42,17 +41,16 @@ int getLine(char s[]){
  *
  */
 int getWord(char w[]){
-  int count = 0;
-    char ch = getchar();
-    w[0]=ch;
-    while(ch!=' ' && ch!='\t' && ch!='\n' && ch!= EOF){
-        count++;
-        ch = getchar();
-        w[count] = ch;
-    }
-    w[count] = '\0';
-    if(ch == EOF) return EOF;
-    return count;
+  int i=0;
+  char c;
+  do {
+    c=getchar();
+    *(w+i)=c;
+    i++;
+  }while (c!= '\t' && c!='\n' && c!=' '&& i<WORD-1 && c!=EOF);
+  *(w+i) ='\0';
+
+  return i-1;
 }
 /*
  * Function:  subString
@@ -95,30 +93,30 @@ int similar (char *s, char *t, int n){
    *  gets lines from user and prints thoses that have string in them
    *  str: string to search in inputs
    */
-void printLines(char *str){
-  char line[LINE];
-  int len=0;
+   void printLines(char *str){
+     char line[LINE];
+     int len=0;
 
-  while (len!=EOF){
-    len =getLine(line);
-    if(subString(line,str)) printf("%s\n", line);
-  }
-}
-  /*
-   * Function:  printSimilarWords
-   * --------------------
-   *  function gets a word in string to search.
-   *  gets lines from user and prints words that similar to string
-   *  str: string to search in inputs
-   */
-void printSimilarWords(char *str){
-  int len=0;
-  char word[WORD];
-    while (len!=EOF){
-      len=getWord(word);
-    if(similar(word,str,1)) printf("%s\n", word);
-  }
-}
+     while (len!=EOF){
+       len =getLine(line);
+       if(subString(line,str)) printf("%s\n", line);
+     }
+   }
+     /*
+      * Function:  printSimilarWords
+      * --------------------
+      *  function gets a word in string to search.
+      *  gets lines from user and prints words that similar to string
+      *  str: string to search in inputs
+      */
+   void printSimilarWords(char *str){
+     int len=0;
+     char word[WORD];
+       while (len!=EOF){
+         len=getWord(word);
+       if(similar(word,str,1)) printf("%s\n", word);
+     }
+   }
 
 int main(){
   char word[WORD];
@@ -131,5 +129,4 @@ int main(){
   if (c=='a') {printLines(word);}
   else if(c=='b'){ printSimilarWords(word);}
   else {printf("only a or c %c\n", c);}
-  return 0;
 }
