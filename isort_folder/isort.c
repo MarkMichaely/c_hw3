@@ -69,7 +69,7 @@ int main(){
     scanf("%d\n", arr+i);
     }
     insertion_sort(arr, LENGTH);
-  for (size_t i = 0; i < LENGTH -1; i++) {
+  for (size_t i = 0; i < LENGTH-1; i++) {
     printf("%d,", *(arr+i));
   }
 }
