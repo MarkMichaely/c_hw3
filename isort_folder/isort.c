@@ -64,12 +64,17 @@ void insertion_sort (int* arr, int len){
 
 int main(){
   int arr[LENGTH];
+  int i=0;
   printf("enter %d integers to sort\n", LENGTH);
+
   for (size_t i = 0; i < LENGTH; i++) {
-    scanf("%d\n", arr+i);
+    scanf("%d", arr+i);
     }
     insertion_sort(arr, LENGTH);
-  for (size_t i = 0; i < LENGTH-1; i++) {
-    printf("%d,", *(arr+i));
-  }
+
+    while (i<LENGTH-1){
+      printf("%d,", *(arr+i));
+      i++;
+    }
+    printf("%d\n", *(arr+i));
 }
