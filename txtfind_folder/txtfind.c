@@ -29,7 +29,7 @@ int getLine(char s[]){
   }while (c!= '\n' && c!='\0' && i<LINE-1 && c!=EOF);
   *(s+i) ='\0';
   if (c==EOF){
-    return EOF
+    return EOF;
   }
   return i-1;
 }
@@ -52,7 +52,7 @@ int getWord(char w[]){
   }while (c!= '\t' && c!='\n' && c!=' '&& i<WORD-1 && c!=EOF);
   *(w+i) ='\0';
     if (c==EOF){
-    return EOF
+    return EOF;
   }
   return i-1;
 }
